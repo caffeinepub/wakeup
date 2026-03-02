@@ -1,0 +1,118 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Apply feature, employer applications view, nav fix & Indian salary formatting",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "summary": "Replace 'Browse Jobs' with 'Browse Candidates' in header navigation for authenticated employers",
+      "acceptanceCriteria": [
+        "When logged in as an employer, the header does NOT show 'Browse Jobs'",
+        "When logged in as an employer, the header shows 'Browse Candidates' linking to the PharmSearch page",
+        "When logged in as a candidate or not logged in, 'Browse Jobs' remains visible as before"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Modify the navigation menu to conditionally render 'Browse Jobs' or 'Browse Candidates' based on the current user's role. Fetch the user's profile using the useGetCallerUserProfile hook and check the role property. When role is 'employer', show 'Browse Candidates' linking to '/pharmsearch'. For all other cases (candidate, guest, or null profile), show 'Browse Jobs' linking to '/jobs'. Apply this logic to both desktop and mobile navigation menus."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Add 'Apply Now' button to JobDetailModal for one-click candidate applications",
+      "acceptanceCriteria": [
+        "A prominent 'Apply Now' button is visible in the JobDetailModal when a candidate is logged in",
+        "Clicking 'Apply Now' calls `applyToJob` and shows a success toast on success",
+        "If the candidate has already applied, the button shows 'Applied' and is disabled",
+        "The button is not shown when an employer is viewing the modal",
+        "If the candidate has no saved profile, an error toast is shown prompting them to complete their profile"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a new mutation hook `useApplyToJob` that calls the backend's `applyToJob` method with the job posting ID. Configure the mutation to invalidate the 'applications' query key on success. Also add a query hook `useGetApplicationsForJob` that fetches applications for a given job ID by calling the backend's `getApplicationsForJob` method, enabled only when a job ID is provided."
+        },
+        {
+          "path": "frontend/src/components/JobDetailModal.tsx",
+          "operation": "modify",
+          "description": "Add an 'Apply Now' button below the job description in the modal. Use the useInternetIdentity hook to check authentication status and the useGetCallerUserProfile hook to determine the user's role and whether they have a candidate profile. Use the useGetMyProfile hook to fetch the candidate's profile and the useApplyToJob mutation to submit the application. Show the button only when: (1) user is authenticated, (2) user role is 'candidate', and (3) an employer is NOT viewing (check if role is not 'employer'). If the candidate has no profile (useGetMyProfile returns null), show an error toast on click prompting them to complete their profile at '/candidate-registration'. After a successful application, show a success toast ('Application submitted!') and disable the button with text 'Applied'. Handle duplicate application errors gracefully with an appropriate toast message. Use shadcn/ui Button component styled prominently."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Add 'Applications' view to employer dashboard showing candidate applicants per job posting",
+      "acceptanceCriteria": [
+        "Each job posting in the employer dashboard shows an 'Applications' count badge or tab",
+        "Employers can view the list of candidates who applied to each job posting",
+        "Each applicant is shown as a CandidateCard",
+        "Clicking a candidate card opens the CandidateDetailModal with full profile details",
+        "Contact details (email, phone) are visible in the modal",
+        "If no applications exist, a 'No applications yet' empty state is shown"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/JobPostingsList.tsx",
+          "operation": "modify",
+          "description": "Enhance each job posting card to include an 'Applications' badge showing the count of applicants. Add an expandable/collapsible section or a separate tab for viewing applications. When expanded, fetch applications using the useGetApplicationsForJob hook (from useQueries.ts) with the job posting ID. Render the list of applicants using the existing CandidateCard component in a grid layout. Handle the click event on each CandidateCard to open the CandidateDetailModal (pass the candidate data as a prop). Display an empty state message ('No applications yet') when the applications array is empty. Add loading and error states for the applications fetch."
+        },
+        {
+          "path": "frontend/src/components/CandidateDetailModal.tsx",
+          "operation": "modify",
+          "description": "Verify that the modal displays all required contact details (email, phone) prominently in the candidate's profile view. If these fields are not currently displayed or are hidden, add or unhide them to ensure employers can see full contact information when viewing applicant profiles. No changes needed if contact details are already visible."
+        }
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "summary": "Implement Indian Rupee formatting for all salary displays across the application",
+      "acceptanceCriteria": [
+        "A `formatINR` utility function exists that formats numbers in Indian number grouping with ₹ prefix",
+        "250000 renders as ₹2,50,000 (not ₹250,000)",
+        "1000000 renders as ₹10,00,000",
+        "All salary fields in JobListingCard, JobDetailModal, CandidateCard, CandidateDetailModal, and candidate/employer dashboards use this format",
+        "Salary ranges display correctly (e.g., ₹20,000 – ₹2,50,000)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/formatINR.ts",
+          "operation": "create",
+          "description": "Create a utility function `formatINR(amount: number): string` that formats numbers using Indian number grouping (lakhs and crores system). The function should: (1) Convert the number to a string, (2) Split into integer and decimal parts, (3) Apply Indian grouping: first group of 3 digits from right, then groups of 2 digits, (4) Join with commas, (5) Prefix with ₹ symbol. Example: 250000 → ₹2,50,000; 1000000 → ₹10,00,000; 12345678 → ₹1,23,45,678. Handle edge cases like zero, negative numbers, and decimal values. Export as the default function."
+        },
+        {
+          "path": "frontend/src/components/JobListingCard.tsx",
+          "operation": "modify",
+          "description": "Import the formatINR utility function from '../utils/formatINR'. Replace all salary value displays (salaryMin, salaryMax) with formatted values using formatINR. For salary ranges, format both min and max values and join with ' – ' (e.g., `${formatINR(job.salaryMin)} – ${formatINR(job.salaryMax)}`)."
+        },
+        {
+          "path": "frontend/src/components/JobDetailModal.tsx",
+          "operation": "modify",
+          "description": "Import the formatINR utility function from '../utils/formatINR'. Replace all salary displays in the modal with formatted values using formatINR. Ensure both salaryMin and salaryMax are formatted when displaying the salary range."
+        },
+        {
+          "path": "frontend/src/components/CandidateCard.tsx",
+          "operation": "modify",
+          "description": "Import the formatINR utility function from '../utils/formatINR'. Replace any salary displays (currentSalary, expectedSalary) in the candidate card with formatted values using formatINR."
+        },
+        {
+          "path": "frontend/src/components/CandidateDetailModal.tsx",
+          "operation": "modify",
+          "description": "Import the formatINR utility function from '../utils/formatINR'. Replace all salary field displays (currentSalary, expectedSalary) in the modal with formatted values using formatINR."
+        },
+        {
+          "path": "frontend/src/pages/CandidateDashboardPage.tsx",
+          "operation": "modify",
+          "description": "Import the formatINR utility function from '../utils/formatINR'. Replace any salary displays in the candidate profile summary section with formatted values using formatINR for both currentSalary and expectedSalary fields."
+        },
+        {
+          "path": "frontend/src/pages/EmployerDashboardPage.tsx",
+          "operation": "modify",
+          "description": "Import the formatINR utility function from '../utils/formatINR'. If any salary values are displayed in the employer dashboard (in job posting summaries or candidate previews), replace them with formatted values using formatINR."
+        }
+      ]
+    }
+  ]
+}

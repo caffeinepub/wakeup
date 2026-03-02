@@ -1,0 +1,106 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-02T12:09:28.765Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-14",
+        "summary": "Remove 'Browse Jobs' from the header navigation when an employer is logged in, and replace it with 'Browse Candidates' (linking to the PharmSearch page). This nav item should only be visible to authenticated employers.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Header.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Header.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Add backend support for job applications: add a stable `applications` HashMap storing a list of candidate principal IDs (or candidate IDs) per job posting ID. Implement `applyToJob(jobPostingId: Text): async Result` that records the calling candidate's profile against the given job posting (no duplicates). Implement `getApplicationsForJob(jobPostingId: Text): async [CandidateProfile]` that returns full candidate profiles for all applicants — accessible only to the employer who owns that posting.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Add an 'Apply Now' button to the JobDetailModal component. When a logged-in candidate clicks it, it calls `applyToJob` with the current job's ID, auto-submitting their saved profile. Show a success toast ('Application submitted!') on success and an error toast if they have no profile or have already applied. The button should not appear when an employer is viewing the modal, and should be disabled (with a 'Applied' label) after the candidate has already applied.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/JobDetailModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/JobDetailModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Add an 'Applications' tab (or sub-section) to each job posting card in the Employer Dashboard's 'My Job Postings' section. When expanded or navigated to, it fetches and displays a list of candidate profiles who applied to that posting, using the existing CandidateCard component. Clicking a candidate card opens the CandidateDetailModal showing full profile details including contact info (email, phone).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/JobPostingsList.tsx",
+          "frontend/src/components/CandidateDetailModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/JobPostingsList.tsx",
+          "frontend/src/components/CandidateDetailModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-18",
+        "summary": "Fix all salary value displays across the entire application — JobListingCard, JobDetailModal, CandidateCard, CandidateDetailModal, candidate profile summary, and any other location salary figures appear — to use proper Indian Rupee formatting. Create a utility function `formatINR(amount: number): string` that formats numbers using Indian number grouping (e.g., 250000 → ₹2,50,000) and apply it consistently everywhere salary values are rendered.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/formatINR.ts",
+          "frontend/src/components/JobListingCard.tsx",
+          "frontend/src/components/JobDetailModal.tsx",
+          "frontend/src/components/CandidateCard.tsx",
+          "frontend/src/components/CandidateDetailModal.tsx",
+          "frontend/src/pages/CandidateDashboardPage.tsx",
+          "frontend/src/pages/EmployerDashboardPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/formatINR.ts",
+          "frontend/src/components/JobListingCard.tsx",
+          "frontend/src/components/JobDetailModal.tsx",
+          "frontend/src/components/CandidateCard.tsx",
+          "frontend/src/components/CandidateDetailModal.tsx",
+          "frontend/src/pages/CandidateDashboardPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/CandidateCard.tsx",
+    "frontend/src/components/CandidateDetailModal.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/components/JobDetailModal.tsx",
+    "frontend/src/components/JobListingCard.tsx",
+    "frontend/src/components/JobPostingsList.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/CandidateDashboardPage.tsx",
+    "frontend/src/utils/formatINR.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

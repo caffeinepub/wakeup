@@ -1,0 +1,130 @@
+{
+  "kind": "build_request",
+  "title": "Apply feature, employer applications view, nav fix & Indian salary formatting",
+  "projectName": "Wakeup",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "text": "Remove 'Browse Jobs' from the header navigation when an employer is logged in, and replace it with 'Browse Candidates' (linking to the PharmSearch page). This nav item should only be visible to authenticated employers.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-4"
+        ],
+        "quotes": [
+          "In employer login Browse jobs should not come.. Browse candidates should be visible"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When logged in as an employer, the header does NOT show 'Browse Jobs'",
+        "When logged in as an employer, the header shows 'Browse Candidates' linking to the PharmSearch page",
+        "When logged in as a candidate or not logged in, 'Browse Jobs' remains visible as before"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Add backend support for job applications: add a stable `applications` HashMap storing a list of candidate principal IDs (or candidate IDs) per job posting ID. Implement `applyToJob(jobPostingId: Text): async Result` that records the calling candidate's profile against the given job posting (no duplicates). Implement `getApplicationsForJob(jobPostingId: Text): async [CandidateProfile]` that returns full candidate profiles for all applicants — accessible only to the employer who owns that posting.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "Option B: Just a one-click apply that automatically submits their saved profile/resume to the job — no extra form needed.",
+          "In employer login if candidate applies for the job.. employer can able to see the profiles."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Calling `applyToJob` with a valid job posting ID records the candidate's application",
+        "Duplicate applications from the same candidate to the same job are ignored",
+        "Calling `applyToJob` without a registered candidate profile returns an error",
+        "`getApplicationsForJob` returns full candidate profiles for all applicants",
+        "`getApplicationsForJob` returns an error if the caller is not the employer who owns the posting"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Add an 'Apply Now' button to the JobDetailModal component. When a logged-in candidate clicks it, it calls `applyToJob` with the current job's ID, auto-submitting their saved profile. Show a success toast ('Application submitted!') on success and an error toast if they have no profile or have already applied. The button should not appear when an employer is viewing the modal, and should be disabled (with a 'Applied' label) after the candidate has already applied.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-4"
+        ],
+        "quotes": [
+          "It doesnot have option to apply for the job.. where the candidate can able to submit the resume.",
+          "Option B: Just a one-click apply that automatically submits their saved profile/resume to the job — no extra form needed."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A prominent 'Apply Now' button is visible in the JobDetailModal when a candidate is logged in",
+        "Clicking 'Apply Now' calls `applyToJob` and shows a success toast on success",
+        "If the candidate has already applied, the button shows 'Applied' and is disabled",
+        "The button is not shown when an employer is viewing the modal",
+        "If the candidate has no saved profile, an error toast is shown prompting them to complete their profile"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Add an 'Applications' tab (or sub-section) to each job posting card in the Employer Dashboard's 'My Job Postings' section. When expanded or navigated to, it fetches and displays a list of candidate profiles who applied to that posting, using the existing CandidateCard component. Clicking a candidate card opens the CandidateDetailModal showing full profile details including contact info (email, phone).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "In employer login if candidate applies for the job.. employer can able to see the profiles."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each job posting in the employer dashboard shows an 'Applications' count badge or tab",
+        "Employers can view the list of candidates who applied to each job posting",
+        "Each applicant is shown as a CandidateCard",
+        "Clicking a candidate card opens the CandidateDetailModal with full profile details",
+        "Contact details (email, phone) are visible in the modal",
+        "If no applications exist, a 'No applications yet' empty state is shown"
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "Fix all salary value displays across the entire application — JobListingCard, JobDetailModal, CandidateCard, CandidateDetailModal, candidate profile summary, and any other location salary figures appear — to use proper Indian Rupee formatting. Create a utility function `formatINR(amount: number): string` that formats numbers using Indian number grouping (e.g., 250000 → ₹2,50,000) and apply it consistently everywhere salary values are rendered.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-3"
+        ],
+        "quotes": [
+          "salary details should be in inr (rupees)",
+          "Salary formatting — Display all salary figures in Indian Rupee format (₹ with Indian number formatting like ₹2,50,000)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A `formatINR` utility function exists that formats numbers in Indian number grouping with ₹ prefix",
+        "250000 renders as ₹2,50,000 (not ₹250,000)",
+        "1000000 renders as ₹10,00,000",
+        "All salary fields in JobListingCard, JobDetailModal, CandidateCard, CandidateDetailModal, and candidate/employer dashboards use this format",
+        "Salary ranges display correctly (e.g., ₹20,000 – ₹2,50,000)"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui",
+    "Backend must remain a single Motoko actor in backend/main.mo",
+    "Use the existing CandidateCard and CandidateDetailModal components for displaying applicants — do not create duplicate components"
+  ],
+  "nonGoals": [
+    "Email or push notifications when a candidate applies",
+    "Candidates receiving confirmation emails or notifications",
+    "Any application withdrawal or cancellation feature",
+    "Pagination of applications list"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

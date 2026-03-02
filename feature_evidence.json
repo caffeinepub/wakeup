@@ -1,0 +1,92 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-remove-browse-jobs-from-the-header-navigation-when-an-employer-is-logged-in-and-replace-it-with-browse-candidates-linking-to-the-pharmsearch-page-this-nav-item-should-only-be-visible-to-authenticated-employers",
+      "featureTitle": "Remove 'Browse Jobs' from the header navigation when an employer is logged in, and replace it with 'Browse Candidates' (linking to the PharmSearch page). This nav item should only be visible to authenticated employers.",
+      "files": [
+        "frontend/src/components/Header.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-apply-now-button-to-the-jobdetailmodal-component-when-a-logged-in-candidate-clicks-it-it-calls-applytojob-with-the-current-job-s-id-auto-submitting-their-saved-profile-show-a-success-toast-application-submitted-on-success-and-an-error-toast-if-they-have-no-profile-or-have-already-applied-the-button-should-not-appear-when-an-employer-is-viewing-the-modal-and-should-be-disabled-with-a-applied-label-after-the-candidate-has-already-applied",
+      "featureTitle": "Add an 'Apply Now' button to the JobDetailModal component. When a logged-in candidate clicks it, it calls `applyToJob` with the current job's ID, auto-submitting their saved profile. Show a success toast ('Application submitted!') on success and an error toast if they have no profile or have already applied. The button should not appear when an employer is viewing the modal, and should be disabled (with a 'Applied' label) after the candidate has already applied.",
+      "files": [
+        "frontend/src/components/JobDetailModal.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-applications-tab-or-sub-section-to-each-job-posting-card-in-the-employer-dashboard-s-my-job-postings-section-when-expanded-or-navigated-to-it-fetches-and-displays-a-list-of-candidate-profiles-who-applied-to-that-posting-using-the-existing-candidatecard-component-clicking-a-candidate-card-opens-the-candidatedetailmodal-showing-full-profile-details-including-contact-info-email-phone",
+      "featureTitle": "Add an 'Applications' tab (or sub-section) to each job posting card in the Employer Dashboard's 'My Job Postings' section. When expanded or navigated to, it fetches and displays a list of candidate profiles who applied to that posting, using the existing CandidateCard component. Clicking a candidate card opens the CandidateDetailModal showing full profile details including contact info (email, phone).",
+      "files": [
+        "frontend/src/components/CandidateDetailModal.tsx",
+        "frontend/src/components/JobPostingsList.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-all-salary-value-displays-across-the-entire-application-joblistingcard-jobdetailmodal-candidatecard-candidatedetailmodal-candidate-profile-summary-and-any-other-location-salary-figures-appear-to-use-proper-indian-rupee-formatting-create-a-utility-function-formatinr-amount-number-string-that-formats-numbers-using-indian-number-grouping-e-g-250000-2-50-000-and-apply-it-consistently-everywhere-salary-values-are-rendered",
+      "featureTitle": "Fix all salary value displays across the entire application — JobListingCard, JobDetailModal, CandidateCard, CandidateDetailModal, candidate profile summary, and any other location salary figures appear — to use proper Indian Rupee formatting. Create a utility function `formatINR(amount: number): string` that formats numbers using Indian number grouping (e.g., 250000 → ₹2,50,000) and apply it consistently everywhere salary values are rendered.",
+      "files": [
+        "frontend/src/components/CandidateCard.tsx",
+        "frontend/src/components/CandidateDetailModal.tsx",
+        "frontend/src/components/JobDetailModal.tsx",
+        "frontend/src/components/JobListingCard.tsx",
+        "frontend/src/pages/CandidateDashboardPage.tsx",
+        "frontend/src/utils/formatINR.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-02T12:09:28.761Z",
+  "summary": "The diff implements all five requirements (REQ-14 through REQ-18) with strong coverage. REQ-14 (nav fix), REQ-15 (backend applications support), REQ-16 (Apply Now button), REQ-17 (Applications tab in employer dashboard), and REQ-18 (formatINR utility) are all present. One minor gap exists: the mobile navigation in Header.tsx is truncated in the diff, so it is unclear whether the employer/candidate nav distinction is also applied in the mobile menu. The backend diff is also truncated, so full verification of all REQ-15 acceptance criteria cannot be confirmed, though the structure is present. No hallucinated features were identified.",
+  "missing_requirements": [
+    {
+      "id": "REQ-14",
+      "requirement": "Mobile navigation should also show 'Browse Candidates' for employers and 'Browse Jobs' for candidates/guests",
+      "reason": "The Header.tsx diff is truncated and only shows the desktop nav conditional logic clearly. The mobile menu implementation cannot be fully verified, though the file summary mentions 'both desktop and mobi[le]' which is cut off.",
+      "evidence": [
+        "frontend/src/components/Header.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.82,
+  "changed_files": [
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/CandidateCard.tsx",
+    "frontend/src/components/CandidateDetailModal.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/components/JobDetailModal.tsx",
+    "frontend/src/components/JobListingCard.tsx",
+    "frontend/src/components/JobPostingsList.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/CandidateDashboardPage.tsx",
+    "frontend/src/utils/formatINR.ts",
+    "project_state.json"
+  ]
+}

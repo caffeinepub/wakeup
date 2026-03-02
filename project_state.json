@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Wakeup — A pharmacy-focused job portal (similar to Naukri) for Retail, Hospital, and Clinical Pharmacists. Features dual login (Employer & Candidate). Candidates can register, create detailed profiles (specialization, qualifications, experience, location, salary), upload resumes, and toggle profile visibility. Employers can register, create company profiles, post job openings, and freely search/source candidates via open keyword-based database search (branded PharmSearch). Backend on Internet Computer (ICP) for end-to-end encryption.",
+  "architectural_notes": [
+    "Backend on Internet Computer (ICP) — decentralized, canister-based, end-to-end encrypted by design",
+    "Dual login system: separate Employer and Candidate authentication flows",
+    "Candidate database is open — employers can freely search and view full profiles including contact details using keyword filters"
+  ],
+  "known_issues": [],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-build-a-candidate-registration-and-login-flow-on-the-frontend-the-registration-form-must-collect-full-name-email-phone-specialization-dropdown-retail-pharmacist-hospital-pharmacist-clinical-pharmacist-qualification-dropdown-b-pharm-m-pharm-pharmd-years-of-experience-number-location-city-state-current-salary-optional-expected-salary-skills-tag-input-and-a-short-bio-after-registration-candidates-are-directed-to-their-dashboard",
+      "title": "Build a candidate registration and login flow on the frontend. The registration form must collect: full name, email, phone, specialization (dropdown: Retail Pharmacist / Hospital Pharmacist / Clinical Pharmacist), qualification (dropdown: B.Pharm / M.Pharm / PharmD), years of experience (number), location (city/state), current salary (optional), expected salary, skills (tag input), and a short bio. After registration, candidates are directed to their dashboard.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-candidate-dashboard-page-that-displays-their-profile-summary-allows-editing-all-profile-fields-includes-a-resume-upload-section-file-input-accepting-pdf-doc-shows-the-uploaded-resume-filename-and-provides-a-prominent-toggle-switch-to-set-their-profile-as-active-or-inactive",
+      "title": "Build a candidate dashboard page that displays their profile summary, allows editing all profile fields, includes a resume upload section (file input accepting PDF/DOC), shows the uploaded resume filename, and provides a prominent toggle switch to set their profile as Active or Inactive.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-employer-registration-and-login-flow-on-the-frontend-the-registration-form-must-collect-company-name-contact-person-name-email-phone-industry-company-size-dropdown-1-10-11-50-51-200-200-employees-headquarters-location-company-website-optional-and-an-about-description-field",
+      "title": "Build an employer registration and login flow on the frontend. The registration form must collect: company name, contact person name, email, phone, industry, company size (dropdown: 1-10 / 11-50 / 51-200 / 200+ employees), headquarters location, company website (optional), and an about/description field.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-employer-dashboard-with-two-main-sections-1-my-job-postings-lists-all-job-postings-by-the-employer-with-options-to-create-new-edit-existing-and-toggle-active-inactive-2-pharmsearch-the-candidate-sourcing-tool-the-job-posting-form-must-include-job-title-required-specializations-multi-select-required-qualifications-multi-select-min-max-experience-location-salary-range-job-description-and-required-skills",
+      "title": "Build an employer dashboard with two main sections: (1) My Job Postings — lists all job postings by the employer with options to create new, edit existing, and toggle active/inactive; (2) PharmSearch — the candidate sourcing tool. The job posting form must include: job title, required specializations (multi-select), required qualifications (multi-select), min/max experience, location, salary range, job description, and required skills.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-pharmsearch-candidate-search-page-for-employers-it-must-include-a-keyword-search-bar-filter-panel-specialization-qualification-experience-range-location-a-results-list-showing-candidate-cards-name-specialization-qualification-experience-location-skills-preview-and-a-candidate-detail-modal-page-showing-the-full-profile-including-contact-details-email-phone",
+      "title": "Build the PharmSearch candidate search page for employers. It must include: a keyword search bar, filter panel (specialization, qualification, experience range, location), a results list showing candidate cards (name, specialization, qualification, experience, location, skills preview), and a candidate detail modal/page showing the full profile including contact details (email, phone).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-public-job-listings-page-accessible-without-login-that-displays-all-active-job-postings-with-filters-for-specialization-location-and-experience-each-listing-should-be-clickable-to-view-full-job-details",
+      "title": "Build a public job listings page accessible without login that displays all active job postings with filters for specialization, location, and experience. Each listing should be clickable to view full job details.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-and-apply-a-professional-healthcare-inspired-visual-theme-for-the-wakeup-brand-use-a-clean-trustworthy-color-palette-e-g-deep-teal-and-white-with-warm-accent-tones-avoid-blue-purple-crisp-sans-serif-typography-card-based-layouts-and-a-navigation-header-with-the-wakeup-logo-name-distinct-employer-login-and-candidate-login-ctas-and-a-hero-section-on-the-landing-page-that-communicates-the-platform-s-purpose-for-pharmacy-professionals",
+      "title": "Design and apply a professional, healthcare-inspired visual theme for the Wakeup brand. Use a clean, trustworthy color palette (e.g., deep teal and white with warm accent tones — avoid blue/purple), crisp sans-serif typography, card-based layouts, and a navigation header with the Wakeup logo/name, distinct Employer Login and Candidate Login CTAs, and a hero section on the landing page that communicates the platform's purpose for pharmacy professionals.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-use-a-wakeup-logo-image-and-a-hero-background-image-for-the-landing-page-render-both-as-static-assets-from-frontend-public-assets-generated",
+      "title": "Generate and use a Wakeup logo image and a hero background image for the landing page. Render both as static assets from frontend/public/assets/generated.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-browse-jobs-from-the-header-navigation-when-an-employer-is-logged-in-and-replace-it-with-browse-candidates-linking-to-the-pharmsearch-page-this-nav-item-should-only-be-visible-to-authenticated-employers",
+      "title": "Remove 'Browse Jobs' from the header navigation when an employer is logged in, and replace it with 'Browse Candidates' (linking to the PharmSearch page). This nav item should only be visible to authenticated employers.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-apply-now-button-to-the-jobdetailmodal-component-when-a-logged-in-candidate-clicks-it-it-calls-applytojob-with-the-current-job-s-id-auto-submitting-their-saved-profile-show-a-success-toast-application-submitted-on-success-and-an-error-toast-if-they-have-no-profile-or-have-already-applied-the-button-should-not-appear-when-an-employer-is-viewing-the-modal-and-should-be-disabled-with-a-applied-label-after-the-candidate-has-already-applied",
+      "title": "Add an 'Apply Now' button to the JobDetailModal component. When a logged-in candidate clicks it, it calls `applyToJob` with the current job's ID, auto-submitting their saved profile. Show a success toast ('Application submitted!') on success and an error toast if they have no profile or have already applied. The button should not appear when an employer is viewing the modal, and should be disabled (with a 'Applied' label) after the candidate has already applied.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-applications-tab-or-sub-section-to-each-job-posting-card-in-the-employer-dashboard-s-my-job-postings-section-when-expanded-or-navigated-to-it-fetches-and-displays-a-list-of-candidate-profiles-who-applied-to-that-posting-using-the-existing-candidatecard-component-clicking-a-candidate-card-opens-the-candidatedetailmodal-showing-full-profile-details-including-contact-info-email-phone",
+      "title": "Add an 'Applications' tab (or sub-section) to each job posting card in the Employer Dashboard's 'My Job Postings' section. When expanded or navigated to, it fetches and displays a list of candidate profiles who applied to that posting, using the existing CandidateCard component. Clicking a candidate card opens the CandidateDetailModal showing full profile details including contact info (email, phone).",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-all-salary-value-displays-across-the-entire-application-joblistingcard-jobdetailmodal-candidatecard-candidatedetailmodal-candidate-profile-summary-and-any-other-location-salary-figures-appear-to-use-proper-indian-rupee-formatting-create-a-utility-function-formatinr-amount-number-string-that-formats-numbers-using-indian-number-grouping-e-g-250000-2-50-000-and-apply-it-consistently-everywhere-salary-values-are-rendered",
+      "title": "Fix all salary value displays across the entire application — JobListingCard, JobDetailModal, CandidateCard, CandidateDetailModal, candidate profile summary, and any other location salary figures appear — to use proper Indian Rupee formatting. Create a utility function `formatINR(amount: number): string` that formats numbers using Indian number grouping (e.g., 250000 → ₹2,50,000) and apply it consistently everywhere salary values are rendered.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Candidate registration, login, and detailed profile creation (specialization, qualifications, experience, location, salary expectations)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Candidate resume upload and management",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Candidate profile active/inactive toggle",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Employer registration, login, and company profile creation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Employer job posting feature",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "PharmSearch — open candidate database with keyword-based search and filters (specialization, experience, location)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Employer can view full candidate profiles and contact details freely",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Professional Naukri-inspired UI branded as Wakeup with dual login system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Implement a backend data model and actor with the following entities: Candidate (id, name, email, phone, specialization: Retail/Hospital/Clinical Pharmacist, qualification: B.Pharm/M.Pharm/PharmD, yearsOfExperience, location, currentSalary, expectedSalary, skills, bio, resumeFileName, resumeData as blob, isProfileActive, createdAt), Employer (id, companyName, contactName, email, phone, industry, companySize, location, about, website, createdAt), and JobPosting (id, employerId, title, specializations, qualifications, minExperience, maxExperience, location, salaryMin, salaryMax, description, skills, postedAt, isActive). Store all three in stable HashMaps.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Implement backend functions for candidate self-service: registerCandidate (creates a new candidate record and returns its ID), updateCandidateProfile (updates all profile fields), uploadResume (stores resume file bytes and filename), toggleProfileActive (flips the isProfileActive flag), getCandidateById (returns full candidate record), and getMyProfile for the calling principal.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement backend functions for employer self-service: registerEmployer (creates a new employer record), updateEmployerProfile (updates company info), getMyEmployerProfile, and getEmployerById.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Implement backend functions for job postings: createJobPosting (creates a posting linked to an employer), updateJobPosting, toggleJobPostingActive, getJobPostingById, getJobPostingsByEmployer, and getAllActiveJobPostings.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Implement backend PharmSearch function: searchCandidates(keywords: Text, specialization: ?Text, qualification: ?Text, minExperience: ?Nat, maxExperience: ?Nat, location: ?Text) that returns a list of all active candidate profiles matching the filters. Keyword matching should search across name, skills, bio, and specialization fields. Contact details (email, phone) must be included in results.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Employer nav: remove 'Browse Jobs', show 'Browse Candidates' (PharmSearch) when employer is logged in",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "One-click Apply for candidates on job detail modal — auto-submits saved profile/resume to the job posting",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Employer applications view — employers can see all candidates who applied to each job posting with full profile details",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Fix all salary displays to use proper Indian Rupee format (₹ with Indian number formatting like ₹2,50,000)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Add backend support for job applications: add a stable `applications` HashMap storing a list of candidate principal IDs (or candidate IDs) per job posting ID. Implement `applyToJob(jobPostingId: Text): async Result` that records the calling candidate's profile against the given job posting (no duplicates). Implement `getApplicationsForJob(jobPostingId: Text): async [CandidateProfile]` that returns full candidate profiles for all applicants — accessible only to the employer who owns that posting.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Wakeup",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
