@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans[wght].woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wght].woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Idea Algo Brand — Medical Green + Deep Navy */
+    --background: 0.97 0.005 200;
+    --foreground: 0.15 0.025 230;
+
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.025 230;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.025 230;
+
+    /* Primary: Vivid Medical Green */
+    --primary: 0.52 0.16 155;
+    --primary-foreground: 0.99 0 0;
+
+    /* Secondary: Light Green Tint */
+    --secondary: 0.94 0.04 155;
+    --secondary-foreground: 0.35 0.12 155;
+
+    /* Accent: Deep Navy Blue */
+    --accent: 0.35 0.14 255;
+    --accent-foreground: 0.99 0 0;
+
+    --muted: 0.95 0.01 200;
+    --muted-foreground: 0.5 0.03 220;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.02 210;
+    --input: 0.88 0.02 210;
+    --ring: 0.52 0.16 155;
+
+    --chart-1: 0.52 0.16 155;
+    --chart-2: 0.35 0.14 255;
+    --chart-3: 0.62 0.14 195;
+    --chart-4: 0.7 0.14 80;
+    --chart-5: 0.5 0.2 300;
+
+    --sidebar: 0.22 0.1 255;
+    --sidebar-foreground: 0.95 0.01 200;
+    --sidebar-primary: 0.52 0.16 155;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.3 0.12 255;
+    --sidebar-accent-foreground: 0.95 0.01 200;
+    --sidebar-border: 0.3 0.1 255;
+    --sidebar-ring: 0.52 0.16 155;
+  }
+
+  .dark {
+    --background: 0.12 0.02 230;
+    --foreground: 0.95 0.01 200;
+
+    --card: 0.17 0.025 225;
+    --card-foreground: 0.95 0.01 200;
+
+    --popover: 0.2 0.025 225;
+    --popover-foreground: 0.95 0.01 200;
+
+    --primary: 0.58 0.18 155;
+    --primary-foreground: 0.99 0 0;
+
+    --secondary: 0.22 0.05 210;
+    --secondary-foreground: 0.85 0.03 200;
+
+    --accent: 0.42 0.16 255;
+    --accent-foreground: 0.99 0 0;
+
+    --muted: 0.22 0.03 220;
+    --muted-foreground: 0.65 0.03 210;
+
+    --destructive: 0.704 0.191 22.216;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 1 0 0 / 10%;
+    --input: 1 0 0 / 15%;
+    --ring: 0.58 0.18 155;
+
+    --sidebar: 0.17 0.025 225;
+    --sidebar-foreground: 0.95 0.01 200;
+    --sidebar-primary: 0.58 0.18 155;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.22 0.05 210;
+    --sidebar-accent-foreground: 0.95 0.01 200;
+    --sidebar-border: 1 0 0 / 10%;
+    --sidebar-ring: 0.58 0.18 155;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.1 255) 0%,
+      oklch(0.28 0.12 235) 45%,
+      oklch(0.32 0.13 205) 100%
+    );
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  .green-gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.16 155),
+      oklch(0.65 0.18 175)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Keep legacy class name working */
+  .teal-gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.16 155),
+      oklch(0.65 0.18 175)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
